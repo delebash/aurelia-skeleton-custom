@@ -1,0 +1,132 @@
+[
+    {
+        "route": [
+            "",
+            "welcome"
+        ],
+        "name": "welcome",
+        "moduleId": "home/welcome",
+        "nav": true,
+        "title": "Welcome",
+        "settings": {
+            "icon": "fa fa-home",
+            "parent": null,
+            "groupTitle": "Main",
+            "isRoute": true
+        }
+    },
+    {
+        "route": [ "notfound" ],
+        "name": "notfound",
+        "moduleId": "home/welcome",
+        "nav": false,
+        "title": "404 | Page not found",
+        "settings": {
+            "icon": "fa fa-close",
+            "parent": null,
+            "isRoute": true
+        }
+    },
+    {
+        "route": "localization",
+        "name": "localization",
+        "moduleId": "examples/localization",
+        "nav": true,
+        "title": "Localization",
+        "settings": {
+            "icon": "fa fa-globe",
+            "parent": null,
+            "isRoute": true,
+            "groupTitle": "Examples"
+        }
+    },
+    {
+        "route": "validation",
+        "name": "validation",
+        "moduleId": "examples/validation",
+        "nav": true,
+        "title": "Validation",
+        "settings": {
+            "icon": "fa fa-check-square-o",
+            "parent": null,
+            "isRoute": true
+        }
+    },
+    {
+        "route": "profile",
+        "name": "profile",
+        "moduleId": "examples/profile",
+        "nav": true,
+        "title": "Profile",
+        "settings": {
+            "icon": "fa fa-user",
+            "parent": null,
+            "isRoute": true
+        }
+    },
+    {
+        "route": "editables",
+        "name": "editables",
+        "moduleId": "examples/editables",
+        "nav": true,
+        "title": "Editables",
+        "settings": {
+            "icon": "fa fa-table",
+            "parent": null,
+            "isRoute": true
+        }
+    },
+    {
+        "route": ["submenu"],
+        "name": "submenu",
+        "moduleId": "home/about",
+        "nav": true,
+        "title": "Submenu 1",
+        "settings": {
+            "icon": "fa fa-list",
+            "parent": null,
+            "groupTitle": "Submenus"
+        }
+    },
+    {
+        "route": ["users"],
+        "name": "users-submenu",
+        "moduleId": "home/users",
+        "nav": true,
+        "title": "Github Users",
+        "settings": {
+            "parent": "submenu"
+        }
+    },
+    {
+        "route": ["child-router"],
+        "name": "child-router",
+        "moduleId": "home/child-router",
+        "nav": true,
+        "title": "Child router",
+        "settings": {
+            "parent": "submenu"
+        }
+    },
+    {
+        "route": ["users"],
+        "name": "users",
+        "moduleId": "home/users",
+        "nav": true,
+        "title": "Github Users",
+        "settings": {
+            "parent": "users-submenu"
+        }
+    },
+    {
+        "route": ["about"],
+        "name": "about",
+        "moduleId": "home/about",
+        "nav": true,
+        "title": "About Us",
+        "settings": {
+            "icon": "fa fa-user",
+            "parent": null
+        }
+    }
+]

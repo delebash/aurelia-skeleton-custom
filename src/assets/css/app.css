@@ -1,0 +1,277 @@
+/* Basic imports */
+/* Base Layout */
+/* Base colors */
+/* Theme colors */
+/* Treeview colors */
+/* Sidebar colors */
+/* Topbar colors */
+/* Mixins */
+/* Style imports */
+body {
+  padding: 10px;
+}
+#main {
+  margin-left: 250px;
+  padding: 80px 20px 20px;
+}
+.animated {
+  -moz-animation-duration: 0.5s !important;
+  -o-animation-duration: 0.5s !important;
+  -webkit-animation-duration: 0.5s !important;
+  animation-duration: 0.5s !important;
+}
+.panel {
+  margin-bottom: 0;
+}
+.panel-primary > .panel-heading {
+  background-color: #357ca5;
+}
+.tab-content {
+  padding: 20px 0 10px;
+}
+.nav.nav-tabs {
+  -webkit-box-shadow: inset 0 -1px 0 #ccc;
+  -moz-box-shadow: inset 0 -1px 0 #ccc;
+  box-shadow: inset 0 -1px 0 #ccc;
+}
+.nav.nav-tabs li > a {
+  font-size: 1.2em;
+}
+.nav.nav-tabs li:not(.active) > a {
+  box-shadow: none;
+}
+#topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+  padding-left: 250px;
+  z-index: 1049;
+  background: #3c8dbc;
+  color: #fff;
+  border-radius: 0;
+}
+#topbar ul.nav > li {
+  float: left;
+}
+#topbar ul.nav > li a {
+  font-size: 1em;
+}
+#topbar ul.nav > li > a {
+  padding: 15px 20px;
+  color: inherit;
+}
+#topbar ul.nav > li > a:hover,
+#topbar ul.nav > li > a:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+#topbar ul.nav .open > a,
+#topbar ul.nav .open > a:hover,
+#topbar ul.nav .open > a:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.navbar-left {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+#sidebar-toggle {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#sidebar {
+  padding: 0px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: #222d32;
+  overflow: auto;
+  z-index: 1050;
+}
+#sidebar-top {
+  margin-bottom: 20px;
+  padding: 10px 20px 10px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 -1px 0 #222;
+  -moz-box-shadow: inset 0 -1px 0 #222;
+  box-shadow: inset 0 -1px 0 #222;
+}
+#sidebar-top div.header {
+  font-size: 1.5em;
+}
+.sidebar-hidden {
+  margin-left: 0 !important;
+}
+.sidebar-hidden #topbar {
+  padding-left: 0 !important;
+}
+.sidebar-hidden #sidebar {
+  display: none;
+}
+.sidebar-close-btn {
+  padding: 3px 10px;
+  border: 1px solid #555;
+}
+#sidebar ul.nav li a,
+#sidebar ul.nav li a:link,
+#sidebar ul.nav li a:visited {
+  padding: 10px 20px;
+  color: #cbcbcb;
+  font-size: 1.1em;
+}
+#sidebar ul.nav li.active a,
+#sidebar ul.nav li a:active {
+  color: #fff;
+}
+#sidebar ul.nav li a:hover,
+#sidebar ul.nav li a:focus {
+  color: #fff;
+  background: #222;
+}
+#sidebar ul.nav li a > i {
+  padding-right: 5px;
+}
+#sidebar ul.nav li a i.submenu-arrow {
+  line-height: 2em;
+}
+#sidebar ul.nav li a i.submenu-arrow:before {
+  content: "\f0d7";
+}
+#sidebar ul.nav li a.tree-hidden i.submenu-arrow:before {
+  content: "\f0d9";
+}
+#sidebar ul.nav .group-title {
+  padding: 15px 20px 5px;
+  color: #aaaaaa;
+  text-transform: uppercase;
+}
+#sidebar ul.nav.nav-submenu li a {
+  padding-left: 40px;
+  font-size: 1.1em;
+}
+#sidebar ul.nav.nav-submenu li ul li a {
+  padding-left: 50px;
+  font-size: 1em;
+}
+.tree-hide {
+  display: none;
+}
+/* Splash screen */
+/* Splash screen */
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+.spinner {
+  margin: 0;
+  width: 40px;
+  text-align: center;
+}
+.spinner > div {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 100%;
+  display: inline-block;
+  -moz-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  -o-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.splash {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  color: #222;
+  text-align: center;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fcfff4+0,ecf0f5+100 */
+  background: #ecf0f5;
+  /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #fcfff4 0%, #ecf0f5 100%);
+  /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, #fcfff4 0%, #ecf0f5 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #fcfff4 0%, #ecf0f5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfff4', endColorstr='#ecf0f5', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+.splash > div {
+  padding-bottom: 10px;
+}
+.splash .message {
+  font-size: 2em;
+}
+.splash .small {
+  font-size: 1.2em;
+}
+.splash .spinner {
+  margin: 10px auto 0;
+  width: 70px;
+}
+.splash .spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #222;
+}
+/* Responsive overrides */
+@media screen and (max-width: 768px) {
+  #topbar {
+    padding-left: 0;
+  }
+  #main {
+    margin-left: 0;
+  }
+  #sidebar {
+    display: none;
+  }
+  .sidebar-visible #sidebar {
+    display: block !important;
+    width: 100%;
+  }
+}
