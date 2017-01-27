@@ -824,29 +824,6 @@ define('resources/elements/treemenu',['exports', 'aurelia-framework', 'aurelia-r
         initializer: null
     })), _class2)) || _class) || _class);
 });
-define('viewmodels/home/welcome',["exports"], function (exports) {
-    "use strict";
-
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-
-    function _classCallCheck(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
-            throw new TypeError("Cannot call a class as a function");
-        }
-    }
-
-    var Welcome = exports.Welcome = function () {
-        function Welcome() {
-            _classCallCheck(this, Welcome);
-        }
-
-        Welcome.prototype.attached = function attached() {};
-
-        return Welcome;
-    }();
-});
 define('viewmodels/examples/editables',['exports', 'aurelia-editables'], function (exports, _aureliaEditables) {
     'use strict';
 
@@ -1181,6 +1158,29 @@ define('viewmodels/examples/validation',['exports', 'aurelia-framework', 'aureli
 
         return Validation;
     }()) || _class);
+});
+define('viewmodels/home/welcome',["exports"], function (exports) {
+    "use strict";
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
+
+    var Welcome = exports.Welcome = function () {
+        function Welcome() {
+            _classCallCheck(this, Welcome);
+        }
+
+        Welcome.prototype.attached = function attached() {};
+
+        return Welcome;
+    }();
 });
 define('aurelia-validation/property-info',["require", "exports", "aurelia-binding"], function (require, exports, aurelia_binding_1) {
     "use strict";
