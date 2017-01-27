@@ -28,10 +28,10 @@
     "source": "src/**/*.html"
   },
   "cssProcessor": {
-    "id": "sass",
-    "displayName": "Sass",
-    "fileExtension": ".scss",
-    "source": "src/**/*.scss",
+    "id": "less",
+    "displayName": "Less",
+    "fileExtension": ".less",
+    "source": "src/assets/less/template.less",
     "filename": "app.css"
   },
   "editor": {
