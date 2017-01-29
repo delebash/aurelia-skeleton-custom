@@ -8,7 +8,7 @@
  * au editables [--bundle <custom-bundle-filename.js>] [--force]
  */
 
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import {CLIOptions} from 'aurelia-cli';
 
 /**
@@ -19,9 +19,9 @@ import {CLIOptions} from 'aurelia-cli';
  * @returns {any|null}
  */
 let getParam = (name, shortcut) => {
-  if (CLIOptions.hasFlag(name, shortcut)) {
-    return CLIOptions.getFlagValue(name, shortcut) || null;
-  }
+    if (CLIOptions.hasFlag(name, shortcut)) {
+        return CLIOptions.getFlagValue(name, shortcut) || null;
+    }
 };
 
 /**
@@ -30,12 +30,12 @@ let getParam = (name, shortcut) => {
  * @return object
  */
 let getOptions = () => {
-  let options = {};
-  options.plugin = getParam('plugin', 'p') || 'aurelia-editables';
-  options.bundle = getParam('bundle', 'b');
-  options.force = CLIOptions.hasFlag('force', 'f');
+    let options = {};
+    options.plugin = getParam('plugin', 'p') || 'aurelia-editables';
+    options.bundle = getParam('bundle', 'b');
+    options.force = CLIOptions.hasFlag('force', 'f');
 
-  return options;
+    return options;
 };
 
 /**
@@ -48,16 +48,16 @@ let getOptions = () => {
  * @return {Promise|Promise<any>}
  */
 let getProject = () => {
-  return new Promise((resolve, reject) => {
-    let path = 'aurelia_project/aurelia.json';
-    fs.readJson(path, (err, content) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(content);
-      }
+    return new Promise((resolve, reject) => {
+        let path = 'aurelia_project/aurelia.json';
+        fs.readJson(path, (err, content) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(content);
+            }
+        });
     });
-  });
 };
 
 /**
@@ -66,22 +66,22 @@ let getProject = () => {
  * @return {Promise|Promise<Array<any>>}
  */
 let getDependencies = (pluginName) => {
-  return new Promise((resolve, reject) => {
-    let path = `./node_modules/${pluginName}/install/dependencies.json`;
-    fs.exists(path, exists => {
-      if (exists !== true) {
-        reject(`Could not open file: ${path}`);
-      } else {
-        fs.readJson(path, (err, contents) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(contents);
-          }
+    return new Promise((resolve, reject) => {
+        let path = `./node_modules/${pluginName}/install/dependencies.json`;
+        fs.exists(path, exists => {
+            if (exists !== true) {
+                reject(`Could not open file: ${path}`);
+            } else {
+                fs.readJson(path, (err, contents) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(contents);
+                    }
+                });
+            }
         });
-      }
     });
-  });
 };
 
 /**
@@ -91,86 +91,86 @@ let getDependencies = (pluginName) => {
  * @void
  */
 let configure = (cliParams, project, deps) => {
-  let bundle = null,
-    bundles = project.build.bundles;
+    let bundle = null,
+        bundles = project.build.bundles;
 
-  if (bundles.length === 0) {
-    throw new Error("aurelia.json: bundles section is missing.");
-  }
+    if (bundles.length === 0) {
+        throw new Error("aurelia.json: bundles section is missing.");
+    }
 
-  let bundleName = cliParams.bundle || 'vendor-bundle.js';
+    let bundleName = cliParams.bundle || 'vendor-bundle.js';
 
-  bundle = bundles.find(item => item.name === bundleName);
+    bundle = bundles.find(item => item.name === bundleName);
 
-  if (!bundle) {
-    console.log(`[INFO] Bundle '${bundleName}' could not be found. Looking for default bundles...`);
-
-    // There are 2 sections by default, second is usually the vendor-bundle.js
-    // Although, some developers prefer to merge everything into a single bundle
-    let index = bundles.length > 1 ? 1 : 0;
-    bundle = bundles[index];
-
-    // this should not be reached ever, but never say never :)
     if (!bundle) {
-      throw new Error('Default bundle could not be found either. Check aurelia.json configuration.');
-    }
+        console.log(`[INFO] Bundle '${bundleName}' could not be found. Looking for default bundles...`);
 
-    bundleName = bundle.name;
-  }
+        // There are 2 sections by default, second is usually the vendor-bundle.js
+        // Although, some developers prefer to merge everything into a single bundle
+        let index = bundles.length > 1 ? 1 : 0;
+        bundle = bundles[index];
 
-  if (!bundle.dependencies) {
-    bundle.dependencies = [];
-  }
-
-  console.log(`[INFO] Bundle found: ${bundle.name}. Configuring new dependencies in aurelia.json for ${bundleName}...`);
-  for (let dep of deps) {
-    let name = dep.name || dep,
-      check = bundle.dependencies.find(item => (item.name || item) === name);
-
-    if (!check) {
-      console.log(`[NEW] Package '${name}' has been configured.`);
-      bundle.dependencies.push(dep);
-    } else {
-      if (cliParams.force) {
-        let i = bundle.dependencies.indexOf(check);
-        bundle.dependencies[i] = dep;
-        console.log(`[MOD] Package '${name}' has been configured.`);
-      } else {
-        console.log(`[SKIP] Package '${name}' has already been configured.`);
-      }
-    }
-  }
-
-  console.log('[INFO] Saving changes to aurelia.json file...');
-  let aureliaProjectFile = 'aurelia_project/aurelia.json';
-
-  fs.copy(aureliaProjectFile, aureliaProjectFile + '.bak', function (err) {
-    if (err) {
-      console.log('[ERROR] An error occurred while duplicating aurelia.json.', err);
-    } else {
-      console.log('[INFO] Backup of aurelia.json has been created.');
-      fs.writeJson(aureliaProjectFile, project, (err) => {
-        if (err) {
-          console.log('[ERROR] An error occurred while updating aurelia.json.', err);
-        } else {
-          console.log('[OK] aurelia.json has been updated.');
-          console.log(`\n\n[OK] aurelia-editables has been configured successfully.`);
+        // this should not be reached ever, but never say never :)
+        if (!bundle) {
+            throw new Error('Default bundle could not be found either. Check aurelia.json configuration.');
         }
-      });
+
+        bundleName = bundle.name;
     }
-  });
+
+    if (!bundle.dependencies) {
+        bundle.dependencies = [];
+    }
+
+    console.log(`[INFO] Bundle found: ${bundle.name}. Configuring new dependencies in aurelia.json for ${bundleName}...`);
+    for (let dep of deps) {
+        let name = dep.name || dep,
+            check = bundle.dependencies.find(item => (item.name || item) === name);
+
+        if (!check) {
+            console.log(`[NEW] Package '${name}' has been configured.`);
+            bundle.dependencies.push(dep);
+        } else {
+            if (cliParams.force) {
+                let i = bundle.dependencies.indexOf(check);
+                bundle.dependencies[i] = dep;
+                console.log(`[MOD] Package '${name}' has been configured.`);
+            } else {
+                console.log(`[SKIP] Package '${name}' has already been configured.`);
+            }
+        }
+    }
+
+    console.log('[INFO] Saving changes to aurelia.json file...');
+    let aureliaProjectFile = 'aurelia_project/aurelia.json';
+
+    fs.copy(aureliaProjectFile, aureliaProjectFile + '.bak', function (err) {
+        if (err) {
+            console.log('[ERROR] An error occurred while duplicating aurelia.json.', err);
+        } else {
+            console.log('[INFO] Backup of aurelia.json has been created.');
+            fs.writeJson(aureliaProjectFile, project, (err) => {
+                if (err) {
+                    console.log('[ERROR] An error occurred while updating aurelia.json.', err);
+                } else {
+                    console.log('[OK] aurelia.json has been updated.');
+                    console.log(`\n\n[OK] aurelia-editables has been configured successfully.`);
+                }
+            });
+        }
+    });
 };
 
 /**
  * Execute
  */
 export default () => {
-  // collect given parameters
-  let cliParams = getOptions();
+    // collect given parameters
+    let cliParams = getOptions();
 
-  let tasks = [getProject(), getDependencies(cliParams.plugin)];
+    let tasks = [getProject(), getDependencies(cliParams.plugin)];
 
-  return Promise.all(tasks)
-    .then(result => configure(cliParams, ...result))
-    .catch(err => { throw new Error(err); });
+    return Promise.all(tasks)
+        .then(result => configure(cliParams, ...result))
+        .catch(err => { throw new Error(err); });
 };

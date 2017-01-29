@@ -14,7 +14,7 @@ export function configurePlugins(aurelia, globalConfig) {
             instance.i18next.use(Backend);
 
             // default configuration
-            let setup: any = {
+            let setup = {
                 backend: {
                     loadPath: './locales/{{lng}}/{{ns}}.json',
                 },

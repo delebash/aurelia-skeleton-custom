@@ -8,7 +8,7 @@
  * au interact [--bundle <custom-bundle-filename.js>] [--force]
  */
 
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import * as project from '../aurelia.json';
 import {CLIOptions} from 'aurelia-cli';
 
